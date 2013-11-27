@@ -1,0 +1,4 @@
+<?php
+$pasok = mysql_connect("localhost","root",""); 
+mysql_select_db("guestbook_db",$pasok);
+?>
