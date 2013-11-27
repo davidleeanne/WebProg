@@ -1,0 +1,57 @@
+<html>
+
+
+<head>
+	<title>MESSAGES</title>
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+</head>
+<center>
+<body>
+	<?php
+	include"connect.php";
+	$query = " SELECT name, date_posted, message from message where is_approve= 'Y'";
+	$result= mysql_query($query);
+	?>
+<div class="span10 well" style="margin-left:100px">
+<table class="table table-strip table-bordered">
+	<h1>MESSAGES</h1>
+	<tr>
+<thead>
+    <th class="header">Name</th>
+    <th class="blue header">message</th>
+    <th class="green header">date posted</th>
+</thead>
+</tr>
+<?php
+
+if(mysql_num_rows($result) > 0){
+    while($row= mysql_fetch_array($result)){ ?>
+    <tr>
+        <td><?=$row['name']?></td>
+        <td><?=$row['message']?></td>
+        <td><?=$row['date_posted']?></td>
+    <tr>
+    	<?php
+    }
+}?>
+	<form method="post" action="backEnd.php">
+
+		<table>
+		<tr>
+			<h2>POST NEW MESSAGE</h2></br
+	        <b>Name: </b><input type="text" name="name" style="width:250px;height:25px"></br>
+	        <b>Email: </b><input type="text" name="email" style="width:250px;height:25px"></br>
+			<b>Message: </b><textarea name="message"style="width:350px;height:100px"></textarea></br>
+			</tr>
+			<tr>
+			<td><input type='submit' value='POST MESSAGE' name='save' class="btn btn-success"></br>
+			</td>
+				<td><a href="backEnd.php" class="btn btn"> view all messages </a></td>
+			</tr>
+		</table>
+		
+	</form>
+ </div>
+</body>
+</center>
+</html>
