@@ -1,0 +1,8 @@
+<?php
+include"connect.php";
+
+$id = $_GET['id'];
+
+    mysql_query("delete from message where id='".$id."'");
+    echo "<script>alert('Record Deleted');window.location.href='read.php';</script>";
+?>
