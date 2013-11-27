@@ -1,0 +1,14 @@
+WebProg
+=======
+
+php
+<?php
+include"read.php";
+
+$id = $_GET['id'];
+
+    $query= " UPDATE message set is_approve= 'Y' where id='$id' ";
+    mysql_query($query);
+    echo "<script>alert('Record has been Approve');window.location.href='read.php';</script>";
+    
+?>
