@@ -1,0 +1,4 @@
+<?php
+include"authenticator.php";
+include"read.php";
+?>
