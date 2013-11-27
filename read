@@ -1,0 +1,52 @@
+<?php
+include "connect.php";
+
+$query = mysql_query("select * from message order by id asc");
+?>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+<div class="span12 well" style="margin-top:100px">
+<table class="table table-strip table-bordered">
+<thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>email</th>
+    <th>message</th>
+    <th>date posted</th>
+    <th>approved</th>
+    <th>Action</th>
+</thead>
+<?php
+
+if(mysql_num_rows($query)>0){
+    while($row= mysql_fetch_array($query)){ ?>
+    <tr>
+        <td><?=$row['id']?></td>
+        <td><?=$row['name']?></td>
+        <td><?=$row['email']?></td>
+        <td><?=$row['message']?></td>
+        <td><?=$row['date_posted']?></td>
+        <td><?=$row['is_approve']?></td>
+         <td><?php
+            if($row['is_approve'] == 'N'){
+                echo "<a href= 'approve.php?id=".$row['id']."' class='btn btn-primary'>Approve</a>";
+            }else{
+                echo "<a href= 'reject.php?id=".$row['id']."' class='btn btn-warning'>Reject</a>";
+            }
+        ?>&nbsp<a href="delete.php?id=<?=$row['id']?>" class="btn btn-danger">Delete</a></td>
+    </tr>
+   
+<?php            
+       
+    }
+       
+}
+else{
+   
+    echo "no record";
+}
+
+?>
+<tr><td colspan="10"><a href="message.php" class="btn btn-success">Add new record</a>
+</td></tr>
+</table>
+</div>
