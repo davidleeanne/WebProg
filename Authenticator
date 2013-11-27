@@ -1,0 +1,16 @@
+<?php
+
+ mysql_connect("localhost", "root");
+ mysql_select_db("guestbook_db");
+
+	$FirstName = $_POST['name'];
+	$EAddress= $_POST['email'];
+	$messsageBody = $_POST['message'];
+	$Approve;
+
+	$query = "INSERT INTO message (name, email, message, date_posted) VALUES ('$FirstName' , '$EAddress' , '$messsageBody' , CURRENT_DATE ) ";
+	$result = mysql_query($query);
+	echo "<script>alert('Record saved '); window.location.href = 'read.php'; </script>";
+
+?>
+	
